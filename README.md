@@ -6,7 +6,7 @@ erp42.launch is for run the simulation model
 controllers.yaml file into config folder it show the controllers
 	joint_state_controller
 	4 wheel controllers (effort controllers) (N*m)
-	1 controller in each front wheel due to in urdf is not possible to create a kinematic chain 		loop, right and left steer wheel controller (position controller) minimun= -0.4 (radian) 		maximun= 0.4 (radian)
+	1 controller in each front wheel due to in urdf is not possible to create a kinematic chain loop, right and left steer 		wheel controller (position controller) minimun= -0.4 (radian) 		maximun= 0.4 (radian)
  
 erp42_control 
 have two important scripts 
