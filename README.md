@@ -11,6 +11,7 @@ sudo apt-get install ros-melodic-gazebo-ros-pkgs ros-melodic-gazebo-ros-control
 
 More information about Gazebo,  please refer to http://gazebosim.org/tutorials?tut=ros_installing&cat=connect_ros
 
+# Descriptions
 erp42 is the description of the robot, the xacro files are inside
 erp42.launch is for run the simulation model 
 controllers.yaml file into config folder it show the controllers
