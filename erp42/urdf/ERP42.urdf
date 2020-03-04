@@ -1,0 +1,421 @@
+<?xml version="1.0"?>
+<robot name="ERP42">
+  
+   <material name="Gray">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+  
+  <material name="Green">
+    <color rgba="0 1.0 0 1.0"/>
+  </material>
+
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-OK-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<link name="structure">
+    
+    <visual name="visual">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ERP42/meshes/ERP42_structure.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <geometry>
+      <!--<box size=" 1.0 1.0 0.2"/>-->
+      <mesh filename="package://ERP42/meshes/ERP42_structure.dae" scale="1 1 1"/>
+      </geometry>
+         <origin xyz="0 0 0" rpy=" 0 0 0" />
+    </collision>
+    
+    <inertial>
+      <mass value="25"/>
+      <origin xyz="0 0 0" />
+      <inertia ixx="20.43" ixy="0.584" ixz="-0.191" iyy="54.197" iyz="-0.2449" izz="72.2588"/>
+    </inertial>
+</link>
+
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+  <link name="right_steer_wheel">
+      <visual>
+        <origin xyz="0 0 0" rpy="-1.5707 0 0" />
+    <!--<origin xyz="0 0 0" rpy="-1.5707 0 0" />-->
+      <geometry>
+        <mesh filename="package://ERP42/meshes/steer_wheel.dae" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+
+  <collision>
+      <geometry>
+      <mesh filename="package://ERP42/meshes/steer_wheel.dae" scale="0.01 0.01 0.01"/>
+      </geometry>
+         <origin xyz="0 0 0" rpy="-1.5707 0 0" />
+    </collision>
+        
+   <inertial>
+      <mass value="2" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+    </inertial>
+  </link>
+
+  <gazebo reference="right_steer_wheel">
+    <material>Gazebo/Blue</material>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <kp value="10000000.0" />
+    <kd value="1.0" />
+  </gazebo>
+
+  <transmission name="right_steer_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="right_steer_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </actuator>
+      <joint name="right_steer_wheel_joint">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+  
+
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+  <link name="left_steer_wheel">
+      <visual>
+    <origin xyz="0 0 0" rpy="1.5707 0 0" />
+      <geometry>
+        <mesh filename="package://ERP42/meshes/steer_wheel.dae" scale="0.01 0.01 0.01"/>
+      </geometry>
+    <material name="Green"/>
+    </visual>
+
+  <collision>
+      <geometry>
+      <mesh filename="package://ERP42/meshes/steer_wheel.dae" scale="0.01 0.01 0.01"/>
+      </geometry>
+         <origin xyz="0 0 0" rpy="1.5707 0 0" />
+    </collision>
+        
+   <inertial>
+      <mass value="2" />
+      <origin xyz="0 0 0"  />
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+    </inertial>
+  </link>
+
+  <gazebo reference="left_steer_wheel">
+    <material>Gazebo/Blue</material>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+    <kp value="10000000.0" />
+    <kd value="1.0" />
+  </gazebo>
+
+  <transmission name="left_steer_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="left_steer_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </actuator>
+      <joint name="left_steer_wheel_joint">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+  <link name="right_front_wheel">
+      <visual>
+    <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ERP42/meshes/caucho_right.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+
+  <collision>
+      <geometry>
+      <mesh filename="package://ERP42/meshes/caucho_right.dae" scale="1 1 1"/>
+      </geometry>
+         <origin xyz="0 0 0" rpy="0 0 0" />
+    </collision>
+        
+   <inertial>
+      <mass value="8" />
+      <origin xyz="0 0 0"  />
+      <inertia ixx="3.906" ixy="2.656" ixz="0.1334" iyy="2.314" iyz="-0.18434" izz="5.8196" />
+    </inertial>
+  </link>
+
+  <gazebo reference="right_front_wheel">
+    <material>Gazebo/Gray</material>
+    <mu1>0.72</mu1>
+    <mu2>0.72</mu2>
+    <kp value="10000000.0" />
+    <kd value="1.0" />
+  </gazebo>
+
+  <transmission name="right_front_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="right_front_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+      <joint name="right_front_wheel_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+    <link name="right_back_wheel">
+      <visual>
+    <origin xyz="0 0 0" rpy="0 0 1.5707" />
+      <geometry>
+        <mesh filename="package://ERP42/meshes/caucho.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <geometry>
+      <mesh filename="package://ERP42/meshes/caucho.dae" scale="1 1 1"/>
+      </geometry>
+         <origin xyz="0 0 0" rpy="0 0 1.5707" />
+    </collision>
+        
+   <inertial>
+      <mass value="8" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="3.838" ixy="-2.834" ixz="-0.1437" iyy="2.623" iyz="-0.1826" izz="6.0607" />
+    </inertial>
+  </link>
+
+   <gazebo reference="right_back_wheel">
+    <material>Gazebo/Gray</material>
+    <mu1>0.72</mu1>
+    <mu2>0.72</mu2>
+    <kp value="10000000.0" />
+    <kd value="1.0" />
+  </gazebo>
+
+  <transmission name="right_back_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="right_back_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+      <joint name="right_back_wheel_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+    <link name="left_front_wheel">
+      <visual>
+    <origin xyz="0 0 0" rpy="0 3.1414 1.5707" />
+      <geometry>
+        <mesh filename="package://ERP42/meshes/caucho.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+
+ <collision>
+      <geometry>
+      <mesh filename="package://ERP42/meshes/caucho.dae" scale="1 1 1"/>
+      </geometry>
+         <origin xyz="0 0 0" rpy="0 3.1414 1.5707" />
+    </collision>
+        
+   <inertial>
+      <mass value="8" />
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.8201" ixy="-1.0615" ixz="0.13389" iyy="2.3267" iyz="0.0" izz="2.7464" />
+    </inertial>
+  </link>
+
+  <gazebo reference="left_front_wheel">
+    <material>Gazebo/Gray</material>
+    <mu1>0.72</mu1>
+    <mu2>0.72</mu2>
+  </gazebo>
+
+  <transmission name="left_front_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="left_front_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+      <joint name="left_front_wheel_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+    <link name="left_back_wheel">
+      <visual>
+    <origin xyz="0 0 0" rpy="0 3.1414 1.5707" />
+      <geometry>
+        <mesh filename="package://ERP42/meshes/caucho.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+       
+    <collision>
+      <geometry>
+      <mesh filename="package://ERP42/meshes/caucho.dae" scale="1 1 1"/>
+      </geometry>
+         <origin xyz="0 0 0" rpy="0 3.1414 1.5707" />
+    </collision>
+   
+   <inertial>
+      <mass value="8" />
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.8477" ixy="1.163" ixz="-0.1433" iyy="2.609" iyz="0.075" izz="3.0567" />
+    </inertial>
+  </link>
+
+   <gazebo reference="left_back_wheel">
+    <material>Gazebo/Gray</material>
+    <mu1>0.72</mu1>
+    <mu2>0.72</mu2>
+  </gazebo>
+
+  <transmission name="left_back_wheel_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="left_back_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+      <joint name="left_back_wheel_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
+
+    <!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+  <link name="right_front_disk_wheel">
+      <visual>
+    <origin xyz="0 0 0" rpy="0 0 1.5707" />
+      <geometry>
+        <mesh filename="package://ERP42/meshes/disk.dae" scale="1 1 1"/>
+      </geometry>
+    <material name="Green"/>
+    </visual>
+
+  <collision>
+      <geometry>
+      <mesh filename="package://ERP42/meshes/disk.dae" scale="1 1 1"/>
+      </geometry>
+         <origin xyz="0 0 0" rpy="0 0 1.5707" />
+    </collision>
+        
+   <inertial>
+      <mass value="1" />
+      <origin xyz="0 0 0"  />
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+    </inertial>
+  </link>
+
+  <gazebo reference="right_front_disk_wheel">
+    <material>Gazebo/Green</material>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+
+    <!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+  <link name="left_front_disk_wheel">
+      <visual>
+    <origin xyz="0 0 0" rpy="0 0 1.5707" />
+      <geometry>
+        <mesh filename="package://ERP42/meshes/disk.dae" scale="1 1 1"/>
+      </geometry>
+    <material name="Green"/>
+    </visual>
+
+  <collision>
+      <geometry>
+      <mesh filename="package://ERP42/meshes/disk.dae" scale="1 1 1"/>
+      </geometry>
+         <origin xyz="0 0 0" rpy="0 0 1.5707" />
+    </collision>
+        
+   <inertial>
+      <mass value="1" />
+      <origin xyz="0 0 0"  />
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+    </inertial>
+  </link>
+
+  <gazebo reference="left_front_disk_wheel">
+    <material>Gazebo/Green</material>
+    <mu1>1</mu1>
+    <mu2>1</mu2>
+  </gazebo>
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+  <joint name="right_front_wheel_joint" type="continuous">
+      <axis xyz="0 1 0" />
+      <parent link="right_steer_wheel"/>
+      <child link="right_front_wheel"/>
+      <origin xyz= "-0.067 0.25 -0.01"/>
+   </joint>
+
+     <joint name="left_front_wheel_joint" type="continuous">
+      <axis xyz="0 1 0" />
+      <parent link="left_steer_wheel"/>
+      <child link="left_front_wheel"/>
+      <origin xyz="-0.07 -0.25 0.05" /><!-- left steer wheel-->
+      <!--<origin xyz="-0.48 -0.55 0.04" /> structure-->
+   </joint>
+
+  <joint name="right_back_wheel_joint" type="continuous">
+      <axis xyz="0 1 0" />
+      <parent link="structure"/>
+      <child link="right_back_wheel"/>
+      <origin xyz="0.45 0.65 0.025" />
+   </joint>
+
+      <joint name="left_back_wheel_joint" type="continuous">
+      <axis xyz="0 1 0" />
+      <parent link="structure"/>
+      <child link="left_back_wheel"/>
+      <origin xyz="0.45 -0.65 0.025" />
+   </joint>
+ 
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+  <joint name="right_steer_wheel_joint" type="revolute">
+      <axis xyz="0 0 1" rpy="0 0 0"/>
+      <parent link="structure"/>
+      <child link="right_steer_wheel"/>
+      <origin xyz= "-0.50 0.40 0.03"/>
+      <limit effort="1000.0" lower="-0.4" upper="0.4" velocity="2"/>
+  </joint>
+
+  <joint name="left_steer_wheel_joint" type="revolute">
+      <axis xyz="0 0 1" />
+      <parent link="structure"/>
+      <child link="left_steer_wheel"/>
+      <origin xyz= "-0.5 -0.40 -0.03"/>
+      <!-- lower and upper limit of the joint in radians velocity=maxvelocity-->
+      <limit effort="1000.0" lower="-0.4" upper="0.4" velocity="2"/>
+   </joint>
+
+   <!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+  <joint name="right_front_disk_wheel_joint" type="fixed">
+      <parent link="right_front_wheel"/>
+      <child link="right_front_disk_wheel"/>
+      <origin xyz= "0 0 0" />
+   </joint>
+
+  <joint name="left_front_disk_wheel_joint" type="fixed">
+      <parent link="left_front_wheel"/>
+      <child link="left_front_disk_wheel"/>
+      <origin xyz="0 0 0" /><!-- left steer wheel-->
+      <!--<origin xyz="-0.48 -0.55 0.04" /> structure-->
+   </joint>
+<!--XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+ <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/ERP42_control</robotNamespace>
+      <legacyModeNS>true</legacyModeNS>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+  
+   </robot>

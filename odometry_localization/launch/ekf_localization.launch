@@ -1,0 +1,22 @@
+<launch>
+	<!--Run the EKF localization node-->
+	<node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+		<rosparam command="load" file="$(find odometry_localization)/config/ekf_localization.yaml"/>
+	</node>
+
+</launch>
+<!--https://www.youtube.com/watch?v=nQZeAafDEJE 17 Talk with odometry sensors ex:
+ odom
+ visual_odom
+ pointcloud_odom -->
+
+ <!--
+Solution can't locate node [ekf_localization_node] in package [robot_localization]
+ https://answers.ros.org/question/333411/error-cannot-launch-node-of-type-robot_localizationekf_localization_node/
+ 1)sudo apt-get install ros-kinetic-robot-localization
+ 2)catkin_make
+
+ this is the new topic /odometry/filtered 
+
+ https://www.youtube.com/watch?v=QZ5q59H2qaI
+ https://www.youtube.com/watch?v=nQZeAafDEJE-->

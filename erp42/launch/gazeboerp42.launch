@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="model" default="$(find erp42)/urdf/erp42.urdf.xacro"/>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <!--slope-->
+    <arg name="world_name" value="$(find erp42_sdf_files)/worlds/simple_world.world"/>
+    <arg name="verbose" value="true"/>
+    <!--slope-->
+  </include>
+  
+  <!--slope-->
+  <arg name="robot_name" default=""/>
+    <arg name="x" default="0.0" />
+    <arg name="y" default="0.0" />
+    <arg name="z" default="0.0" />
+    <arg name="roll" default="0"/>
+    <arg name="pitch" default="0"/>
+    <arg name="yaw" default="0.0" />
+     <!--<arg name="sdf_robot_file" default="$(find riseq_gazebo)/models/drl_gate/mobilerobot4.sdf"/>-->
+  <arg name="sdf_robot_file" default="$(find erp42_sdf_files)/models/elements/slope.sdf"/>
+
+  <node name="$(arg robot_name)" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-file $(arg sdf_robot_file) -sdf -x $(arg x) -y $(arg y) -z $(arg z)  -R $(arg roll) -P $(arg pitch) -Y $(arg yaw) -model $(arg robot_name)"/>
+  <!--slope-->
+
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="-z 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
+
+
+
+</launch>

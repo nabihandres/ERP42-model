@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="imu_linear_acceleration_plot"
+        pkg="rqt_plot"
+        type="rqt_plot"
+        args="/imu/linear_acceleration" />
+
+<node name="odom_linear_position_x_y_plot"
+        pkg="rqt_plot"
+        type="rqt_plot"
+        args ="/odom/pose/pose/position/x /odom/pose/pose/position/y" />
+
+<node name="odom_linear_position_z_plot"
+        pkg="rqt_plot"
+        type="rqt_plot"
+        args="/odom/pose/pose/position/z" />
+
+<node name="odom_linear_velocity_plot"
+        pkg="rqt_plot"
+        type="rqt_plot"
+        args="/odom/twist/twist/linear" />
+
+<node name="odom_angular_velocity_plot"
+        pkg="rqt_plot"
+        type="rqt_plot"
+        args="/odom/twist/twist/angular" />
+        
+        
+
+</launch>
