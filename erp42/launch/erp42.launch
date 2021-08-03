@@ -4,14 +4,9 @@
   <arg name="model" default="$(find erp42)/urdf/erp42.urdf.xacro"/>
   <arg name="rvizconfig" default="$(find erp42)/urdf/urdf.rviz" /> 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />  
-
-
   <include file="$(find erp42)/launch/gazeboerp42.launch">
     <arg name="model" value="$(arg model)" />
   </include>
-
-  
-
   <rosparam command="load"
         file="$(find erp42)/config/controllers.yaml" /><!---->
   
@@ -25,12 +20,10 @@
                        right_back_wheel_controller
                        right_steer_wheel_controller
                        left_steer_wheel_controller
-                       
-  
          
           --shutdown-timeout 3"/>
   
-  <!--gui is window controller for testing if every controller its okay --> 
+  <!--gui is window controller for testing if every controller its working --> 
   <node pkg="joint_state_publisher" type="joint_state_publisher"  name="joint_state_publisher">
     <param name="use_gui" value="False"/>
   </node>
@@ -38,8 +31,6 @@
   <!-- this allows to get a proper value of TFs for the whole robot based on the URDF and the current value of joints -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
   </node> 
-
-  
 
 </launch>
 
