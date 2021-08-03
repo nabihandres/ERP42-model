@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <launch>
-  
   <arg name="model" default="$(find erp42)/urdf/erp42.urdf.xacro"/>
   <arg name="rvizconfig" default="$(find erp42)/urdf/urdf.rviz" /> 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />  
@@ -27,11 +26,9 @@
   <node pkg="joint_state_publisher" type="joint_state_publisher"  name="joint_state_publisher">
     <param name="use_gui" value="False"/>
   </node>
-
   <!-- this allows to get a proper value of TFs for the whole robot based on the URDF and the current value of joints -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
   </node> 
-
 </launch>
 
 
